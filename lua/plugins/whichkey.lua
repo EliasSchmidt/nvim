@@ -4,7 +4,7 @@ return {
   config = function()
     require("which-key").setup({
       plugins = {
-        spelling = { enable = true },
+        spelling = { enabled = false },
       },
       win = {
         border = "rounded",

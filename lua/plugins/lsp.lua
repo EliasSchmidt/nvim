@@ -18,7 +18,9 @@ return {
   },
 
   config = function()
-    local servers = { "ts_ls", "html", "cssls", "jsonls", "lua_ls" }
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+    local servers = { "clangd", "ts_ls", "html", "cssls", "jsonls", "lua_ls" }
 
     require("mason").setup()
     require("mason-lspconfig").setup({
@@ -30,7 +32,8 @@ return {
     for _, server in ipairs(servers) do
       vim.lsp.config(
         server,
-        {on_attach = on_attach}
+        {on_attach = on_attach},
+        capabilities
       )
     end
   end,

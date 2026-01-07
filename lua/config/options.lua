@@ -5,4 +5,6 @@ vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.expandtab = true
 vim.o.termguicolors = true
+vim.o.updatetime = 300
 vim.opt.clipboard = "unnamedplus"
+vim.opt.spellsuggest = "best,9"
