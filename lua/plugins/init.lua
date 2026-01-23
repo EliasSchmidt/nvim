@@ -9,6 +9,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  require("plugins.lazydev"),
 	require("plugins.treesitter"),
   require("plugins.completion"),
   require("plugins.lsp"),
