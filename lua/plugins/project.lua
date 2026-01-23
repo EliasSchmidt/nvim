@@ -24,12 +24,12 @@ return {
       "~/dev/*/*",
       "~/documents/vault"
     },
-    last_project_cd = true, 
+    last_project_cd = true,
     session_manager_opts = {
       autosave_ignore_not_normal = true,
       autosave_ignore_dirs = {},
     },
-    picker = { 
+    picker = {
       type = "telescope",
 
       preview = {
@@ -40,11 +40,5 @@ return {
     }},
   },
 
-  config = function(_, opts)
-    require("neovim-project").setup(opts)
-  end,
-
-  keys = {
-    { "<leader>fp", "<cmd>NeovimProjectDiscover<cr>", desc = "Find Project" },
-  }
+  keys = {{"<leader>fp", "<cmd>NeovimProjectDiscover<cr>", desc = "Find Project"}}
 }
