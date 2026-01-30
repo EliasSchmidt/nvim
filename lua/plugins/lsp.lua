@@ -1,13 +1,29 @@
 local on_attach = function(client, bufnr)
   local bufmap = function(mode, lhs, rhs, desc)
-    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, { noremap = true, silent = true, desc = desc })
+    vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, noremap = true, silent = true, desc = desc })
   end
 
-  bufmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to Definition")
-  bufmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to Implementation")
-  bufmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", "Show References")
-  bufmap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover Info")
-  bufmap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", "LSP: Code Action")
+
+  local telescope = require("telescope.builtin")
+
+  local custom_ref = function ()
+    telescope.lsp_references({
+      initial_mode = "normal"
+    })
+  end
+
+  local custom_def = function ()
+    telescope.lsp_definitions({
+      initial_mode = "normal"
+    })
+  end
+
+
+  bufmap("n", "gd", custom_def, "Go to Definition")
+  bufmap("n", "gi", vim.lsp.buf.implementation, "Go to Implementation")
+  bufmap("n", "<leader>fr", custom_ref, "Find References")
+  bufmap("n", "K", function() vim.lsp.buf.hover({border = "rounded"}) end, "Hover Info")
+  bufmap("n", "<leader>ca", vim.lsp.buf.code_action, "LSP: Code Action")
 end
 
 return {

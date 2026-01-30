@@ -20,4 +20,6 @@ require("lazy").setup({
   require("plugins.term"),
   require("plugins.lualine"),
   require("plugins.project"),
+  require("plugins.fileTree"),
+  require("plugins.center"),
 })

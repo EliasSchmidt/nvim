@@ -6,7 +6,9 @@ return {
       transparent_background = true,
       integrations = {
         treesitter = true,
-        lsp = true,
+        lsp = { enabled = true, borders = true },
+        mason = true,
+        telescope = true
       },
     })
     vim.cmd([[colorscheme catppuccin]])
