@@ -52,18 +52,28 @@ return {
 
     local function lsp_symbols()
       ts.lsp_document_symbols({
-        default_text = "function"
+        default_text = "function",
+        initial_mode = "normal"
       })
     end
 
+    local function fd()
+      ts.find_files({find_command = {"fdfind", "--type", "f", "--strip-cwd-prefix", "--hidden"}})
+    end
+
+    local function fd_all()
+      ts.find_files({find_command = {"fdfind", "--type", "f", "--strip-cwd-prefix", "--hidden", "--no-ignore-parent", "--no-ignore", "--exclude", ".git"}})
+    end
+
+
     -- Keymaps
     local map = vim.keymap.set
-    map("n", "<leader>ff", function () ts.find_files({hidden = true}) end, { desc = "Find Project Files" })
-    map("n", "<leader>fa", function () ts.find_files({hidden = true, no_ignore_parent = true, no_ignore = true}) end, { desc = "Find all Project Files" })
-    map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Search Text in Project" })
-    map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Open Buffers" })
+    map("n", "<leader>ff", fd, { desc = "Find Project Files" })
+    map("n", "<leader>fa", fd_all, { desc = "Find all Project Files" })
+    map("n", "<leader>fg", function () ts.live_grep() end, { desc = "Search Text in Project" })
+    map("n", "<leader>fb", function () ts.buffers({initial_mode = "normal"}) end, { desc = "Open Buffers" })
     map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help Tags" })
     map("n", "<leader>flf", lsp_symbols, { desc = "Lsp functions" })
-    map("n", "<leader>fls", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Lsp Symbols" })
+    map("n", "<leader>fls", function () ts.lsp_document_symbols() end, { desc = "Lsp Symbols" })
   end,
 }
