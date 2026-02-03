@@ -58,8 +58,10 @@ terminal sessions clean machen via Luxterm + toggle term
 
 # Fehlende Funktionalität
 - smarte Klammern
-- Filetree
+- window picker
+- terminal persitence fix
 - evtl git integration
+- search and replace and better highlight
 - undotree
 - better notifications
 

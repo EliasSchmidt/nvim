@@ -34,20 +34,21 @@ return {
 
     local ts = require("telescope.builtin")
 
-    local function smart_find_files()
-      local is_git = vim.fs.find(".git", {
-        path = vim.loop.cwd(),
-        upward = true,
-        type = "directory"
-      })[1]
-
-      if is_git then
-        vim.notify("Git gefunden in: " .. is_git, vim.log.levels.INFO)
-        ts.git_files()
-      else
-        ts.find_files()
-      end
-    end
+    -- find files git nicht mehr nutzen, da ich auch untracked sehen will und mit fd find auch so schnell ist
+    -- local function smart_find_files()
+    --   local is_git = vim.fs.find(".git", {
+    --     path = vim.loop.cwd(),
+    --     upward = true,
+    --     type = "directory"
+    --   })[1]
+    --
+    --   if is_git then
+    --     vim.notify("Git gefunden in: " .. is_git, vim.log.levels.INFO)
+    --     ts.git_files()
+    --   else
+    --     ts.find_files()
+    --   end
+    -- end
 
     local function lsp_symbols()
       ts.lsp_document_symbols({
@@ -57,7 +58,8 @@ return {
 
     -- Keymaps
     local map = vim.keymap.set
-    map("n", "<leader>ff", smart_find_files, { desc = "Find Project Files" })
+    map("n", "<leader>ff", function () ts.find_files({hidden = true}) end, { desc = "Find Project Files" })
+    map("n", "<leader>fa", function () ts.find_files({hidden = true, no_ignore_parent = true, no_ignore = true}) end, { desc = "Find all Project Files" })
     map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Search Text in Project" })
     map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Open Buffers" })
     map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help Tags" })

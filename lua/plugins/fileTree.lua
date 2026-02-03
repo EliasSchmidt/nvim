@@ -15,6 +15,9 @@ return {
         enabled = true,
         leave_dirs_open = true,
       },
+      filtered_items = {
+        visible = true,
+      },
       use_libuv_file_watcher = true,
     },
     window = {
