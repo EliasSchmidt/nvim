@@ -22,4 +22,6 @@ require("lazy").setup({
   require("plugins.project"),
   require("plugins.fileTree"),
   require("plugins.center"),
+  require("plugins.flash"),
+  require("plugins.mini"),
 })

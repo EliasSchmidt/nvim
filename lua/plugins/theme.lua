@@ -5,6 +5,7 @@ return {
       flavour = "mocha", -- "mocha", "latte", "frappe", "macciato"
       transparent_background = true,
       integrations = {
+        flash = true,
         treesitter = true,
         lsp = { enabled = true, borders = true },
         mason = true,
