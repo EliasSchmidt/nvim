@@ -14,6 +14,7 @@ require("lazy").setup({
   require("plugins.completion"),
   require("plugins.lsp"),
   require("plugins.theme"),
+  require("plugins.image"),
   require("plugins.telescope"),
   require("plugins.whichkey"),
   require("plugins.icons"),
