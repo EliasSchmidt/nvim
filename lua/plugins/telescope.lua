@@ -57,12 +57,14 @@ return {
       })
     end
 
+    local find_cmd = vim.uv.os_uname().sysname == "Linux" and "fdfind" or "fd"
+
     local function fd()
-      ts.find_files({find_command = {"fdfind", "--type", "f", "--strip-cwd-prefix", "--hidden"}})
+      ts.find_files({find_command = {find_cmd, "--type", "f", "--strip-cwd-prefix", "--hidden"}})
     end
 
     local function fd_all()
-      ts.find_files({find_command = {"fdfind", "--type", "f", "--strip-cwd-prefix", "--hidden", "--no-ignore-parent", "--no-ignore", "--exclude", ".git"}})
+      ts.find_files({find_command = {find_cmd, "--type", "f", "--strip-cwd-prefix", "--hidden", "--no-ignore-parent", "--no-ignore", "--exclude", ".git"}})
     end
 
 
