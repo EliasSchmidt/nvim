@@ -6,3 +6,4 @@ sk('n', '<leader>ri', function() require('custom.issue').open() end, { desc = "Ã
 sk('i', '<c-h>', '<c-w>')
 sk({'n', 'v', 'x'}, 'j', 'gj')
 sk({'n', 'v', 'x'}, 'k', 'gk')
+sk('n', "<esc>", "<cmd>nohlsearch<CR>", { desc = "Search Highlight entfernen" })
